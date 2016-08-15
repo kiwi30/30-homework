@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <title>30 homework</title>
+    <style>
+        body {
+            margin: 15px;
+        }
+        input, textarea {
+            margin-bottom: 5px;
+        }
+        .rad {
+    margin-bottom: 15px;
+            border: 1px solid lightgray;
+            border-radius: 5px;
+
+}
+    </style>
+</head>
+<body>
+<form name="myForm"  action="" method="GET">
+    <input type="text" class="form-control" required placeholder="First name" name="first_name" title="Enter your first name"/>
+
+    <input type="text" class="form-control" required placeholder="Last name" name="last_name" title="Enter your last name"/>
+
+    <input type="text" class="form-control" pattern="^\+380\d{2}\d{3}\d{2}\d{2}$" placeholder="Telephone" name="phone" title="Enter phone in format +380-xxx-xx-xx"/>
+    <!--<div>Enter phone in format +380-xxx-xx-xx </div>-->
+
+    <div class="rad">Choose your sex:</div>
+    <input type="radio" class="rad" value="female" id="female" name="gender"/>
+       <label for="female" class="rad">Female</label>
+
+    <input type="radio" class="rad" value="male" id="male" name="gender"/>
+       <label for="male" class="rad">Male</label>
+
+    <div>Enter your message</div>
+    <textarea name="message" class="form-control" id="message" maxlength="30" placeholder="Please enter a message" title="Enter message"></textarea>
+
+
+    <select class="form-control" name="country" id="countr">
+        <option value="Ukraine">Ukraine</option>
+        <option value="France">France</option>
+        <option value="Greece">Greece</option>
+    </select>
+
+    <button class="btn btn-success">Submit</button>
+</form>
+
+<script>
+    function getFormData(event) {
+        var formData = {};
+        for(var i=0; i<myForm.length-1; i++) {
+            if (myForm.elements[i].type != 'radio' ) {
+                formData[myForm.elements[i].name] = myForm.elements[i].value;
+            } else if (myForm.elements[i].type == 'radio' && myForm.elements[i].checked) {
+                formData[myForm.elements[i].name] = myForm.elements[i].value;
+            }
+        }
+        console.log(formData);
+        event.preventDefault();
+        return false;
+    }
+    myForm.addEventListener('submit', getFormData);
+</script>
+</body>
+</html>
